@@ -1,0 +1,87 @@
+	    <footer class="footer">
+	      <div class="container">
+	            <hr/>
+	            <div class="footer-copyright text-center py-3"><p>© 2018 Copyright</p>
+			    </div>
+	      </div>
+	    </footer>
+	</body>
+	<script>
+		$(document).ready(function(){
+			//set the text id to visible
+			$('#graphics').css("display", "none");
+			$('#audio').css("display", "none");
+			$('#attributes').css("display", "none");
+			$('#spawning').css("display", "none");
+
+			function changeSelected(selected) {
+				$('#text').css("display", "none");
+				$('#graphics').css("display", "none");
+				$('#audio').css("display", "none");
+				$('#attributes').css("display", "none");
+				$('#properties').css("display", "none");
+				$('#attacks').css("display", "none");
+				$('#ai').css("display", "none");
+				$('#spawning').css("display", "none");
+				$("#li_" + 'text').removeClass();
+				$("#li_" + 'graphics').removeClass();
+				$("#li_" + 'audio').removeClass();
+				$("#li_" + 'attributes').removeClass();
+				$("#li_" + 'properties').removeClass();
+				$("#li_" + 'attacks').removeClass();
+				$("#li_" + 'ai').removeClass();
+				$("#li_" + 'spawning').removeClass();
+				$("#li_" + 'text').addClass("nav nav-tabs");
+				$("#li_" + 'graphics').addClass("nav nav-tabs");
+				$("#li_" + 'audio').addClass("nav nav-tabs");
+				$("#li_" + 'attributes').addClass("nav nav-tabs");
+				$("#li_" + 'properties').addClass("nav nav-tabs");
+				$("#li_" + 'attacks').addClass("nav nav-tabs");
+				$("#li_" + 'ai').addClass("nav nav-tabs");
+				$("#li_" + 'spawning').addClass("nav nav-tabs");
+				$(selected).css("display", "block");
+				$("#li_" + selected.slice(1, selected.length)).addClass("active");
+
+			}
+
+			$("#href_text").click(function(){
+			 	changeSelected("#text")
+			});
+
+			$("#href_graphics").click(function(){
+		 		changeSelected("#graphics")
+			});
+
+			$("#href_audio").click(function(){
+		 		changeSelected("#audio")
+			});
+
+
+			$("#href_attributes").click(function(){
+		 		changeSelected("#attributes")
+			});
+
+			$("#href_properties").click(function(){
+		 		changeSelected("#properties")
+			});			
+			$("#href_attacks").click(function(){
+		 		changeSelected("#attacks")
+			});
+
+			$("#href_ai").click(function(){
+		 		changeSelected("#ai")
+			});	
+
+			$("#href_spawning").click(function(){
+		 		changeSelected("#spawning")
+			});
+
+			$("#option_monster").change(function(){
+		 		var selectedMonster = $(this).children("option:selected").val();
+		 		alert("You have selected - " + selectedMonster);
+		 		$( "#submitform" ).submit();
+			});			
+
+		});
+	</script>
+</html>	

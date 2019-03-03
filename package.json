@@ -1,0 +1,35 @@
+{
+  "name": "monsterdex",
+  "version": "1.0.0",
+  "description": "Node.js Monster Rolodex",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "crud",
+    "node",
+    "mongodb"
+  ],
+  "author": "Steven C. Van Wasshenova",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "bootstrap": "^3.3.7",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.5.6",
+    "express": "^4.16.3",
+    "express-flash": "0.0.2",
+    "express-mongo-db": "^2.0.3",
+    "express-session": "^1.15.6",
+    "express-validator": "^3.2.0",
+    "forever": "^0.15.3",
+    "jquery": "^3.0.0",
+    "json": "^9.0.6",
+    "method-override": "^3.0.0",
+    "nodemon": "^1.18.4",
+    "popper.js": "^1.14.4",
+    "xml2js": "^0.4.19",
+    "xml2json": "^0.11.2"
+  }
+}
