@@ -13,8 +13,27 @@
 			$('#audio').css("display", "none");
 			$('#attributes').css("display", "none");
 			$('#spawning').css("display", "none");
+			$('#spells').css("display", "none");
+			$('#items').css("display", "none");
+			$('#starting_allies').css("display", "none");
 
+			var selected_tab = $(this).children("input:hidden[name=hidden_tab]").val();
+
+			//show the hidden div
+			$(selected_tab).css("display", "block");
+			$(selected_tab).css("padding-left", "20px");
+			$(selected_tab).css("padding-right", "20px");
+			$(selected_tab).css("padding-top", "20px");
+
+			//make the requested tab highlighted
+			$("#li_" + 'text').removeClass();
+			$("#li_" + 'text').addClass("active");
+
+			//$('input:hidden[name=hidden_tab]').val(selectedMonster)
+
+			//register callback for option select changes
 			function changeSelected(selected) {
+				//hide all panels
 				$('#text').css("display", "none");
 				$('#graphics').css("display", "none");
 				$('#audio').css("display", "none");
@@ -23,6 +42,11 @@
 				$('#attacks').css("display", "none");
 				$('#ai').css("display", "none");
 				$('#spawning').css("display", "none");
+				$('#spells').css("display", "none");
+				$('#items').css("display", "none");
+				$('#starting_allies').css("display", "none");
+
+				//blank all tabs
 				$("#li_" + 'text').removeClass();
 				$("#li_" + 'graphics').removeClass();
 				$("#li_" + 'audio').removeClass();
@@ -31,6 +55,11 @@
 				$("#li_" + 'attacks').removeClass();
 				$("#li_" + 'ai').removeClass();
 				$("#li_" + 'spawning').removeClass();
+				$("#li_" + 'spells').removeClass();
+				$("#li_" + 'items').removeClass();
+				$("#li_" + 'starting_allies').removeClass();
+
+				//make lis into tabs
 				$("#li_" + 'text').addClass("nav nav-tabs");
 				$("#li_" + 'graphics').addClass("nav nav-tabs");
 				$("#li_" + 'audio').addClass("nav nav-tabs");
@@ -39,11 +68,23 @@
 				$("#li_" + 'attacks').addClass("nav nav-tabs");
 				$("#li_" + 'ai').addClass("nav nav-tabs");
 				$("#li_" + 'spawning').addClass("nav nav-tabs");
+				$("#li_" + 'starting_allies').addClass("nav nav-tabs");
+
+				//show the requested tab
 				$(selected).css("display", "block");
+				$(selected).css("padding-left", "20px");
+				$(selected).css("padding-right", "20px");
+				$(selected).css("padding-top", "10px");
+
+				//make the requested tab highlighted
 				$("#li_" + selected.slice(1, selected.length)).addClass("active");
+
+				//update the hidden_tab value
+				$('input:hidden[name=hidden_tab]').val(selected)
 
 			}
 
+			//register callback for option select changes
 			$("#href_text").click(function(){
 			 	changeSelected("#text")
 			});
@@ -76,11 +117,32 @@
 		 		changeSelected("#spawning")
 			});
 
-			$("#option_monster").change(function(){
-		 		var selectedMonster = $(this).children("option:selected").val();
-		 		alert("You have selected - " + selectedMonster);
-		 		$( "#submitform" ).submit();
+			$("#href_spells").click(function(){
+		 		changeSelected("#spells")
+			});
+
+			$("#href_items").click(function(){
+		 		changeSelected("#items")
 			});			
+
+			$("#href_starting_allies").click(function(){
+		 		changeSelected("#starting_allies")
+			});
+
+			$("#option_monster").val($('input:hidden[name=hidden_selected]').val());
+
+
+			//when the dropdown is changed...
+			$("#option_monster").change(function(){
+				//save the change
+		 		var selectedMonster = $(this).children("option:selected").val();
+		 		//write to hidden input for post
+		 		$('input:hidden[name=hidden_selected]').val(selectedMonster)
+		 		//post
+		 		$( "#submitform" ).submit();
+			});	
+
+
 
 		});
 	</script>
