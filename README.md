@@ -1,3 +1,4 @@
-# Splunk Factory UI
-## Node.js, Express & MongoDB: Simple Add, Edit, Delete, View (CRUD)
-### Based on http://blog.chapagain.com.np/node-js-express-mongodb-simple-add-edit-delete-view-crud/
+# Infra Arcana Monsterdex
+## https://sites.google.com/site/infraarcana/home
+## https://gitlab.com/martin-tornqvist/ia
+### https://discordapp.com/channels/205277826788622337/342410354497814528
