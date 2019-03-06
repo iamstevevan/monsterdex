@@ -29,100 +29,103 @@
                     </p>
                   </div>
                   <div class="panel-body" style="background-color:#000000;">
-                    <div style="text-align:center; background-color:#000000;" >
+                   <div style="text-align:center; background-color:#000000;" >
                      <img src="/tiles/24x24/<%= data[selected].graphics.tile %>.png" alt="<%= data[selected].graphics.tile %>" height="120" width="120" >
-                    </div>
-                      <ul class="nav nav-tabs" >
-                        <% for(var key in data[selected]) { %>
-                          <% if((typeof(key) == 'string') && (typeof(data[selected][key]) == 'object')) { %>
-                            <li role="presentation" id="li_<%= key %>">
-                              <a href="#" id="href_<%= key %>">
-                                <%= key %>
-                              </a>
-                            </li>
-                          <% } %>
-                        <% } %>
-                      </ul>
-                    <% for(var key in data[selected]) { %>
-                      
-                      <% delete data[selected].id %> 
+                   </div>
+                   <ul class="nav nav-tabs" >
+                     <% for(var key in data[selected]) { %>
+                       <% if((typeof(key) == 'string') && (typeof(data[selected][key]) == 'object')) { %>
+                         <li role="presentation" id="li_<%= key %>">
+                           <a href="#" id="href_<%= key %>">
+                             <%= key %>
+                           </a>
+                         </li>
+                       <% } %>
+                     <% } %>
+                   </ul>
+                   <% for(var key in data[selected]) { %>
+                    <% delete data[selected].id %> 
 
-                      <% if(key != selected_stat) { %>
-                        <div class="table-responsive" id="<%= key %>" style="display: none;">
-                      <% } else {%>
-                        <div class="table-responsive" id="<%= key %>" style="display: block;padding-top:10px;padding-left:20px;padding-right:20px;">
-                      <% } %>
-
-                      <table class="table table-dark" style="color:#ffffff;">
-                        
-                          <% if((typeof(key) == 'string') && (typeof(data[selected][key]) == 'object')) { %>
-                           <% for(var k in data[selected][key]) { %>
-                            <% if(typeof(data[selected][key][k]) == 'string') { %>
-                             <tr><td> <p> <%= k %> </p></td><td><p><%= data[selected][key][k] %></p></td></tr>                         
-                            <% } else { %>
-                             <% if(typeof(data[selected][key][k]) == 'object' && data[selected][key][k].length > 0) { %>
-                               <% for(let i=0;i<data[selected][key][k].length;i++) {%>
-                                 <%if(typeof(data[selected][key][k][i])=='object') { %>
-                                  <% for(var k1 in data[selected][key][k][i]) { %>
-                                    <%if(key == 'spells') { %>
-                                     <%if(k1 == "$t") { %>
-                                      <tr><td> <p>spell</p></td><td><p><%= data[selected][key][k][i][k1] %></p></td></tr>   
-                                     <%} else { %>
-                                      <tr><td> <p><%= k1 %></p></td><td><p><%= data[selected][key][k][i][k1] %></p></td></tr>   
-                                     <%} %>
-                                    <%} else { %>
-                                     <%if(k1 == '$t' && key == 'spawning') { %>
-                                      <tr><td> <p>group_size: </p></td><td><p><%= data[selected][key][k][i][k1] %></p></td></tr>
-                                     <%} else { %>
-                                      <tr><td> <p><%= k1 %></p></td><td><p><%= data[selected][key][k][i][k1] %></p></td></tr>   
-                                     <% } %>
-                                    <%} %>
-                                  <% } %>
-                                 <%} else { %>
-                                  <!-- Spwaning & native rooms, properties,  -->
-                                  <tr><td> <p><%= k %></p></td><td><p><%= data[selected][key][k][i] %></p></td></tr>   
-                                 <%} %>
-                               <% } %>     
-                             <% } else if(typeof(data[selected][key][k]) !== 'object') { %>
-                              <tr><td> <p>Missing statement 1 ?</p></td></tr>   
-                             <% } else { %>
-                              <% if(!data[selected][key][k].length) { %>
-                               <% for(var k1 in data[selected][key][k]) { %>
-                                 <% if(typeof(data[selected][key][k][k1]) == 'object') {  %>
-                                  <% for(var k2 in data[selected][key][k][k1]) { %>
-                                   <%if(k2 == '$t') { %>
-                                   <!-- attacks/property_applied -->
-                                    <tr><td> <p>property_applied </p></td><td><p><%= data[selected][key][k][k1][k2] %> </p></td></tr> 
-                                   <%} else { %>
-                                   <!-- attack duration & percent_chance -->
-                                    <tr><td> <p><%= k2 %> </p></td><td><p><%= data[selected][key][k][k1][k2] %> </p></td></tr> 
-                                   <% } %>
-                                  <% } %>
-                                 <% } else { %>
-                                 <!-- attack id & damage -->
-                                  <tr><td> <p><%= k1 %> </p></td><td><p><%= data[selected][key][k][k1] %> </p></td></tr> 
-                                 <% } %> 
-                               <% } %>
-                              <% } else { %>
-
-                               <tr><td> <p><%= k %> </p></td><td><p><%= data[selected][key][k] %> </p></td></tr>   
-                              <% } %>
-                             <% }%>
-                            <% } %>
-                           <% } %>
-                          <% } else if((typeof(key) == 'string') && (typeof(data[selected][key]) == 'string')) { %>
-                            <!-- used for id, which is removed from the object since its singular -->
-                            <tr><td> <p><%= key %> </p></td><td><p><%= data[selected][key] %> </p></td></tr> 
-                          <% } else { %>
-                            <% if((typeof(key) == 'object') && (typeof(data[selected][key]) == 'object')) { %>
-                              <!-- Catch corner case? -->
-                              <tr><td> <p><%= key %> </p></td><td><p><%= data[selected][key] %> </p></td></tr> 
-                            <% } %>
-                          <% } %>
-                        
-                      </table>
-                      </div>
+                    <% if(key != selected_stat) { %>
+                      <div class="table-responsive" id="<%= key %>" style="display: none;">
+                    <% } else {%>
+                      <div class="table-responsive" id="<%= key %>" style="display: block;padding-top:10px;padding-left:20px;padding-right:20px;">
                     <% } %>
+
+                    <table class="table table-dark" style="color:#ffffff;">
+                      
+                        <% if((typeof(key) == 'string') && (typeof(data[selected][key]) == 'object')) { %>
+                         <% for(var k in data[selected][key]) { %>
+                          <% if(typeof(data[selected][key][k]) == 'string') { %>
+                           <tr><td> <p> <%= k %> </p></td><td><p><%= data[selected][key][k] %></p></td></tr>                         
+                          <% } else { %>
+                           <% if(typeof(data[selected][key][k]) == 'object' && data[selected][key][k].length > 0) { %>
+                             <% for(let i=0;i<data[selected][key][k].length;i++) {%>
+                               <%if(typeof(data[selected][key][k][i])=='object') { %>
+                                <% for(var k1 in data[selected][key][k][i]) { %>
+                                  <%if(key == 'spells') { %>
+                                   <%if(k1 == "$t") { %>
+                                    <tr><td> <p>spell</p></td><td><p><%= data[selected][key][k][i][k1] %></p></td></tr>   
+                                   <%} else { %>
+                                    <tr><td> <p><%= k1 %></p></td><td><p><%= data[selected][key][k][i][k1] %></p></td></tr>   
+                                   <%} %>
+                                  <% } else { %>
+                                   <%if(k1 == '$t' && key == 'spawning') { %>
+                                    <tr><td> <p>group_size </p></td><td><p><%= data[selected][key][k][i][k1] %></p></td></tr>
+                                   <%} else { %>
+                                    <tr><td> <p><%= k1 %></p></td><td><p><%= data[selected][key][k][i][k1] %></p></td></tr>   
+                                   <% } %>
+                                  <%} %>
+                                <% } %>
+                               <%} else { %>
+                                <!-- Spwaning & native rooms, properties,  -->
+                                <tr><td> <p><%= k %></p></td><td><p><%= data[selected][key][k][i] %></p></td></tr>   
+                               <%} %>
+                             <% } %>     
+                           <% } else if(typeof(data[selected][key][k]) !== 'object') { %>
+                            <tr><td> <p>Missing statement 1 ?</p></td></tr>   
+                           <% } else { %>
+                            <% if(!data[selected][key][k].length) { %>
+                             <% for(var k1 in data[selected][key][k]) { %>
+                               <% if(typeof(data[selected][key][k][k1]) == 'object') {  %>
+                                <% for(var k2 in data[selected][key][k][k1]) { %>
+                                 <%if(k2 == '$t') { %>
+                                 <!-- attacks/property_applied -->
+                                  <tr><td> <p>property_applied </p></td><td><p><%= data[selected][key][k][k1][k2] %> </p></td></tr> 
+                                 <%} else { %>
+                                 <!-- attack duration & percent_chance -->
+                                  <tr><td> <p><%= k2 %>: </p></td><td><p><%= data[selected][key][k][k1][k2] %> </p></td></tr> 
+                                 <% } %>
+                                <% } %>
+                               <% } else { %>
+                               <!-- attack id & damage -->
+                               <!-- itenms -> item_set  -->
+                                <%if(k1 == '$t' && key == 'items') { %>
+                                 <tr><td> <p>item_set</p></td><td><p><%= data[selected][key][k][k1] %> </p></td></tr> 
+                                <% } else if(k1 == '$t' && key == 'spells') { %>
+                                 <tr><td> <p>spell </p></td><td><p><%= data[selected][key][k][k1] %> </p></td></tr> 
+                                <% } else { %>
+                                 <tr><td> <p><%= k1 %> </p></td><td><p><%= data[selected][key][k][k1] %> </p></td></tr> 
+                                <% } %>
+                               <% } %> 
+                             <% } %>
+                            <% } else { %>
+
+                             <tr><td> <p><%= k %> </p></td><td><p><%= data[selected][key][k] %> </p></td></tr>   
+                            <% } %>
+                           <% }%>
+                          <% } %>
+                         <% } %>
+                        <% } else if((typeof(key) == 'string') && (typeof(data[selected][key]) == 'string')) { %>
+                          <!-- used for id, which is removed from the object since its singular -->
+                          <tr><td> <p><%= key %> </p></td><td><p><%= data[selected][key] %> </p></td></tr> 
+
+                        <% } %>
+                      
+                    </table>
+                    
+                    </div>
+                   <% } %>
                   </div>
                 </div>
             </tr>
