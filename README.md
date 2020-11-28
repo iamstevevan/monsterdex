@@ -29,6 +29,15 @@ Straight forward npm build.
 npm install
 ```
 
+### Sideloading IA resources
+#### ia_resources being a clone of current verison of ia
+
+```
+cp ia_resources/ia/installed_files/data/monsters.xml .
+
+cp -R ia_resources/ia/installed_files/gfx/tiles/24x24/. public/tiles/24x24/.
+```
+
 ### Running
 
 Straight forward node app.
