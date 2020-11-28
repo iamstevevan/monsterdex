@@ -18,10 +18,12 @@
                     <p class="panel-title">
                       <form  action="/" method="post" name="form1" name="submitform" id="submitform">
                         <select id="option_monster" name="option_monster" class="form-control">
+                          <!-- add monsters to dropdown list -->
                           <% for(let i = 0; i < data.length; i++) { %>
                             <option id="<%= data[i].id %>"><%= data[i].id %></option>
                           <% } %>
                         </select>
+                        <!-- setup hidden selection variables and set the initial selected -->
                         <button type="submit" style="display:none;" class="btn btn-default" >Submit</button>
                         <input type='hidden' name='hidden_selected' id='hidden_selected' value="<%= selected_monster %>">
                         <input type='hidden' name='hidden_tab' id='hidden_tab' value="<%= selected_stat %>">
@@ -30,13 +32,20 @@
                     </p>
                   </div>
 
+                  <!-- create a panel body to hold all tab contents -->
                   <div class="panel-body" style="background-color:#000000;">
 
+                    <!-- load the monster icon -->
                    <div style="text-align:center; background-color:#000000;">
                      <img src="/tiles/24x24/<%= data[selected].graphics.tile %>.png" alt="<%= data[selected].graphics.tile %>" height="120" width="120" >
                    </div>
 
+                   <!-- for each tab, read xml contents and conver to table -->
                    <ul class="nav nav-tabs" >
+                     <!-- data is array of monsters
+                     selected is passed in from hidden inputs and dropdown coordination -->
+
+                     <!-- build the "tab headers" first -->
                      <% for(var key in data[selected]) { %>
                        <% if((typeof(key) == 'string') && (typeof(data[selected][key]) == 'object')) { %>
                          <li role="presentation" id="li_<%= key %>">
@@ -48,9 +57,11 @@
                      <% } %>
                     </ul>
 
+                  <!-- now setup the contents of each tab -->
                   <% for(var key in data[selected]) { %>
                     <% delete data[selected].id %>
 
+                    <!-- use conditional formatting of bootstrap -->
                     <% if(key != selected_stat) { %>
 
                       <div class="table-responsive" id="<%= key %>" style="display: none;">
@@ -62,11 +73,13 @@
                     <% } %>
 
                     <table class="table table-dark" style="color:#ffffff;">
-
+                        <!-- use if/else to setup object handling -->
+                        <!-- if the key is a string and the data at that location is an object -->
                         <% if((typeof(key) == 'string') && (typeof(data[selected][key]) == 'object')) { %>
 
+                          <!-- loop the object at the monster.tab.rowheader location -->
                           <% for(var k in data[selected][key]) { %>
-
+                            <!-- if the location is a string, print that using boolean visual helper -->
                             <% if(typeof(data[selected][key][k]) == 'string') { %>
                               <%if(data[selected][key][k] == 'true' || data[selected][key][k] == true) { %>
                                 <tr><td> <p> <%= k %> </p></td><td><p style="color:green"><%= data[selected][key][k] %></p></td></tr>
@@ -75,6 +88,7 @@
                               <%} else { %>
                                 <tr><td> <p> <%= k %> </p></td><td><p"><%= data[selected][key][k] %></p></td></tr>
                               <%} %>
+                          <!-- otherwise try to do object expandion -->
                             <% } else { %>
 
                             <% if(typeof(data[selected][key][k]) == 'object' && data[selected][key][k].length > 0) { %>
@@ -223,10 +237,12 @@
                             <% } %>
 
                           <% } %>
-
+                        <!-- if the key is a string and the data at that location is an string -->
                         <% } else if((typeof(key) == 'string') && (typeof(data[selected][key]) == 'string')) { %>
                           <!-- used for id, which is removed from the object since its singular -->
+                          <!-- create a row with the key as the row header text and its string as the row value text -->
                           <tr><td> <p><%= key %> </p></td>
+                            <!-- setup formatting for boolean objects to make reading easier -->
                             <%if(data[selected][key] == 'true' || data[selected][key] === true) { %>
                               <td><p style="color:green;"><%= data[selected][key] %> </p></td></tr>
                             <%} else if(data[selected][key] == 'false' || data[selected][key] == false || data[selected][key] == '-1') { %>
@@ -235,8 +251,8 @@
                               <td><p><%= data[selected][key] %> </p></td></tr>
                             <%} %>
                         <% } %>
+                    
                     </table>
-
                   </div>  <!-- panel-body -->
                    <% } %>
                 </div>    <!--   panel panel-info -->
