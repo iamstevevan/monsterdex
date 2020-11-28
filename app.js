@@ -1,15 +1,9 @@
+/**
+ * setting up the express for api routing
+ */ 
 var express = require('express')
 var app = express()
 var path = require('path')
-//var expressMongoDb = require('express-mongo-db');
-
-/**
- * Store database credentials in a separate config.js file
- * Load the file/module and its values
- * For MongoDB, we basically store the connection URL in config file
- */ 
-//var config = require('./config')
-//app.use(expressMongoDb(config.database.url));
 
 /**
  * setting up the templating view engine
@@ -21,8 +15,6 @@ app.set('view engine', 'ejs')
  * import routes
  */ 
 var index = require('./routes/index')
-// var confs = require('./routes/confs')
-// var projects = require('./routes/projects')
 
 /**
  * Express Validator Middleware for Form Validation
@@ -96,8 +88,6 @@ app.use('/', index)
 app.get('/',function(req,res){
   res.render("index");
 });
-// app.use('/confs', confs)
-// app.use('/projects', projects)
 
 app.use(express.static(path.resolve('./public')));
 app.use(express.static(path.join(__dirname, 'public')));
