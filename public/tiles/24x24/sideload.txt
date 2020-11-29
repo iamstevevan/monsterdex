@@ -1,0 +1,3 @@
+cp ia_resources/ia/installed_files/data/monsters.xml .
+
+cp -R ia_resources/ia/installed_files/gfx/tiles/24x24/. public/tiles/24x24/.
