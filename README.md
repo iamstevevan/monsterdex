@@ -65,3 +65,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Acknowledgments
 
 * Hat tip to Martin Törnqvist for the game
+* Discord #infraarcana enthusiasts
