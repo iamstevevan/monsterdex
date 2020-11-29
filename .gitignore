@@ -1,0 +1,4 @@
+monsters.xml
+node_modules/
+package-lock.json
+public/tiles/24x24/*.png
