@@ -13,4 +13,7 @@ Which versions of your project are currently being supported with security updat
 How to report a vulnerability:
 
 ### Github issues
+
+https://guides.github.com/features/issues/
+
 ### Updated when possible with no guarantee
